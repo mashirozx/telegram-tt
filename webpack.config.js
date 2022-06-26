@@ -133,6 +133,7 @@ module.exports = (env = {}, argv = {}) => {
         appName: process.env.APP_ENV === 'production' ? 'Telegram Web' : 'Telegram Web Beta',
         appleIcon: process.env.APP_ENV === 'production' ? 'apple-touch-icon' : './apple-touch-icon-dev',
         template: 'src/index.html',
+        ogUrl: 'https://t.littlefo.rest'
       }),
       new MiniCssExtractPlugin({
         filename: '[name].[contenthash].css',
