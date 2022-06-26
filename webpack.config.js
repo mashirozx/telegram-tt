@@ -26,7 +26,7 @@ dotenv.config();
 const DEFAULT_APP_TITLE = `Telegram${APP_ENV !== 'production' ? ' Beta' : ''}`;
 
 const {
-  BASE_URL = 'https://web.telegram.org/z/',
+  BASE_URL = 'https://sakurasou.tk/',
   APP_TITLE = DEFAULT_APP_TITLE,
 } = process.env;
 

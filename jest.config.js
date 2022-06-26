@@ -17,5 +17,6 @@ module.exports = {
   },
   globals: {
     APP_REVISION: "jest-test",
+    API_PATH: ".web.telegram.org"
   },
 };
