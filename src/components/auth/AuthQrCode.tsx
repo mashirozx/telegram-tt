@@ -23,6 +23,7 @@ import useAsync from '../../hooks/useAsync';
 import Loading from '../ui/Loading';
 import Button from '../ui/Button';
 import AnimatedIcon from '../common/AnimatedIcon';
+import useCustomLangObserver from '../../hooks/useCustomLangObserver';
 
 import blankUrl from '../../assets/blank.png';
 
@@ -53,6 +54,7 @@ const AuthCode: FC<StateProps> = ({
     returnToAuthPhoneNumber,
     setSettingOption,
   } = getActions();
+  const customLang = useCustomLangObserver();
 
   const suggestedLanguage = getSuggestedLanguage();
   const lang = useLang();
@@ -167,6 +169,12 @@ const AuthCode: FC<StateProps> = ({
         </ol>
         {isAuthReady && (
           <Button isText onClick={habdleReturnToAuthPhoneNumber}>{lang('Login.QR.Cancel')}</Button>
+        )}
+        {!isAuthReady && (
+          <Button isText style="text-transform: none">
+            {/* eslint-disable-next-line max-len */}
+            {lang('Custom.WaitQRLogin') === 'Custom.WaitQRLogin' ? 'Please wait the page loading, then you can login or register with phone number' : lang('Custom.WaitQRLogin')}
+          </Button>
         )}
         {suggestedLanguage && suggestedLanguage !== language && continueText && (
           <Button isText isLoading={isLoading} onClick={handleLangChange}>{continueText}</Button>

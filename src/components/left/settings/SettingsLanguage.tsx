@@ -20,6 +20,18 @@ import Loading from '../../ui/Loading';
 import Checkbox from '../../ui/Checkbox';
 import ListItem from '../../ui/ListItem';
 
+const chinese: ApiLanguage = {
+  beta: true,
+  name: 'Chinese',
+  nativeName: '中文',
+  langCode: 'zh-CN',
+  baseLangCode: 'zh',
+  pluralCode: 'zh',
+  stringsCount: 4793,
+  translatedCount: 4793,
+  translationsUrl: 'https://crwd.in/telegram-tt',
+};
+
 type OwnProps = {
   isActive?: boolean;
   onReset: () => void;
@@ -46,7 +58,10 @@ const SettingsLanguage: FC<OwnProps & StateProps> = ({
     setSettingOption,
   } = getActions();
 
-  const [selectedLanguage, setSelectedLanguage] = useState<string>(language);
+  const getCustomLanguage = window.localStorage.getItem('custom-language');
+  const customLanguage = getCustomLanguage === 'official' ? undefined : getCustomLanguage;
+
+  const [selectedLanguage, setSelectedLanguage] = useState<string>(customLanguage ?? language);
   const [isLoading, markIsLoading, unmarkIsLoading] = useFlag();
 
   const lang = useLang();
@@ -58,7 +73,17 @@ const SettingsLanguage: FC<OwnProps & StateProps> = ({
   }, [languages, lastSyncTime, loadLanguages]);
 
   const handleChange = useCallback((langCode: string) => {
-    setSelectedLanguage(langCode);
+    const displayLang = langCode;
+    if (langCode === 'zh-CN') {
+      window.localStorage.setItem('custom-language', 'zh-CN');
+      window.localStorage.setItem('custom-language-name', '中文');
+      langCode = 'en';
+    } else {
+      window.localStorage.setItem('custom-language', 'official');
+      window.localStorage.removeItem('custom-language-name');
+    }
+
+    setSelectedLanguage(displayLang);
     markIsLoading();
 
     void setLanguage(langCode as LangCode, () => {
@@ -71,7 +96,7 @@ const SettingsLanguage: FC<OwnProps & StateProps> = ({
   }, [markIsLoading, unmarkIsLoading, setSettingOption, loadAttachBots]);
 
   const options = useMemo(() => {
-    return languages ? buildOptions(languages) : undefined;
+    return languages ? buildOptions([chinese, ...languages]) : undefined;
   }, [languages]);
 
   const handleShouldTranslateChange = useCallback((newValue: boolean) => {

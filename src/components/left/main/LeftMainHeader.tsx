@@ -36,6 +36,7 @@ import { getPromptInstall } from '../../../util/installPrompt';
 import captureEscKeyListener from '../../../util/captureEscKeyListener';
 import useLeftHeaderButtonRtlForumTransition from './hooks/useLeftHeaderButtonRtlForumTransition';
 import useAppLayout from '../../../hooks/useAppLayout';
+import useMissingTranslationDetector from '../../../hooks/useMissingTranslationDetector';
 
 import DropdownMenu from '../../ui/DropdownMenu';
 import MenuItem from '../../ui/MenuItem';
@@ -48,6 +49,7 @@ import ConnectionStatusOverlay from '../ConnectionStatusOverlay';
 import StatusButton from './StatusButton';
 
 import './LeftMainHeader.scss';
+import useCustomLangObserver from "../../../hooks/useCustomLangObserver";
 
 type OwnProps = {
   shouldHideSearch?: boolean;
@@ -123,6 +125,9 @@ const LeftMainHeader: FC<OwnProps & StateProps> = ({
     skipLockOnUnload,
     openUrl,
   } = getActions();
+
+  const { missingTranslations, copyTranslations } = useMissingTranslationDetector();
+  const customLang = useCustomLangObserver();
 
   const lang = useLang();
   const { isMobile } = useAppLayout();
@@ -333,7 +338,7 @@ const LeftMainHeader: FC<OwnProps & StateProps> = ({
         icon="bug"
         onClick={handleBugReportClick}
       >
-        Report Bug
+        {lang('Custom.ReportBug') === 'Custom.ReportBug' ? 'Report Bug' : lang('Custom.ReportBug')}
       </MenuItem>
       {IS_BETA && (
         <MenuItem
@@ -352,12 +357,22 @@ const LeftMainHeader: FC<OwnProps & StateProps> = ({
           Switch to K Version
         </MenuItem>
       )}
+      {missingTranslations && customLang !== 'official' && (
+        <MenuItem
+          icon="language"
+          onClick={copyTranslations}
+        >
+          {/* eslint-disable-next-line max-len */}
+          {lang('Custom.ReportTranslation') === 'Custom.ReportTranslation' ? 'Report Translation' : lang('Custom.ReportTranslation')}
+          {/* <span className="menu-item-badge">{lang('New')}</span> */}
+        </MenuItem>
+      )}
       {canInstall && (
         <MenuItem
           icon="install"
           onClick={getPromptInstall()}
         >
-          Install App
+          {lang('Custom.InstallApp') === 'Custom.InstallApp' ? 'Install App' : lang('Custom.InstallApp')}
         </MenuItem>
       )}
     </>

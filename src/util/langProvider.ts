@@ -10,6 +10,13 @@ import * as cacheApi from './cacheApi';
 import { callApi } from '../api/gramjs';
 import { createCallbackManager } from './callbacks';
 import { formatInteger } from './textFormat';
+import langPackChinesePlus from './langPackChinesePlus';
+
+interface CustomWindow extends Window {
+  translationMissing?: ApiLangPack;
+}
+
+declare const window: CustomWindow;
 
 export interface LangFn {
   (key: string, value?: any, format?: 'i', pluralValue?: number): string;
@@ -108,7 +115,30 @@ function createLangFn() {
       return key;
     }
 
-    const langString = (langPack?.[key]) || (fallbackLangPack?.[key]);
+    let customLangString: ApiLangString | undefined;
+    if (window.localStorage.getItem('custom-language') === 'zh-CN') {
+      const chinese = langPackChinesePlus?.[key];
+      if (chinese) {
+        customLangString = chinese;
+      } else {
+        const langString = (langPack?.[key]) || (fallbackLangPack?.[key]) || { key, value: 'undefined' };
+        const msg = `[🇨🇳] 没有 【${key}】 对应的中文翻译`;
+        // eslint-disable-next-line no-null/no-null
+        const defaultMsg = `[💡] 其对应的翻译包是 ${JSON.stringify(langString, null, 2)}`;
+        const helper = '[🧲] 可在此通过 `window.translationMissing` 命令导出所有缺失的翻译';
+        const help = '[🙌] 请打开首页左侧的菜单，点击翻译反馈，并将剪贴板上的内容发送给 @mashiro233 以提交缺失的翻译信息';
+        // eslint-disable-next-line no-console
+        console.warn(`${msg}\n${defaultMsg}\n${helper}\n${help}`);
+        if (!window.translationMissing) {
+          window.translationMissing = {};
+        }
+        if (!window.translationMissing.hasOwnProperty(key)) {
+          window.translationMissing[key] = langString;
+        }
+      }
+    }
+
+    const langString = customLangString || (langPack?.[key]) || (fallbackLangPack?.[key]);
     if (!langString) {
       if (!fallbackLangPack) {
         void importFallbackLangPack();

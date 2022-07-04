@@ -1,0 +1,34 @@
+name: Update pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔎 Check out repo
+        uses: actions/checkout@main
+
+      - name: 🧑‍💻 Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: 📦 Install Dependencies
+        run: npm install --no-save
+
+      - name: ⚙️ Set .env
+        run: wget ${{ secrets.ENV_DL }}
+
+      - name: 🏗️ Build
+        run: sh release.sh
+
+      - name: 🚀 Deploy on gh-pages branch
+        uses: JamesIves/github-pages-deploy-action@4.1.1
+        with:
+          BRANCH: gh-pages
+          FOLDER: docs
