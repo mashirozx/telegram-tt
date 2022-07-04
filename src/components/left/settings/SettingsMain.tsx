@@ -35,6 +35,9 @@ const SettingsMain: FC<OwnProps & StateProps> = ({
 }) => {
   const { loadProfilePhotos, loadAuthorizations, loadWebAuthorizations } = getActions();
 
+  const getCustomLanguageName = window.localStorage.getItem('custom-language-name');
+  const customLanguageName = getCustomLanguageName === 'official' ? undefined : getCustomLanguageName;
+
   const lang = useLang();
   const profileId = currentUser?.id;
 
@@ -120,7 +123,7 @@ const SettingsMain: FC<OwnProps & StateProps> = ({
           onClick={() => onScreenSelect(SettingsScreens.Language)}
         >
           {lang('Language')}
-          <span className="settings-item__current-value">{lang.langName}</span>
+          <span className="settings-item__current-value">{customLanguageName ?? lang.langName}</span>
         </ListItem>
       </div>
     </div>

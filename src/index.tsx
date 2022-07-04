@@ -49,3 +49,8 @@ if (DEBUG) {
     console.warn('GLOBAL STATE', getGlobal());
   });
 }
+
+if (!window.localStorage.getItem('custom-language')) {
+  window.localStorage.setItem('custom-language', 'zh-CN');
+  window.localStorage.setItem('custom-language-name', '中文');
+}

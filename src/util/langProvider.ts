@@ -10,6 +10,13 @@ import * as cacheApi from './cacheApi';
 import { callApi } from '../api/gramjs';
 import { createCallbackManager } from './callbacks';
 import { formatInteger } from './textFormat';
+import langPackChinesePlus from './langPackChinesePlus';
+
+interface CustomWindow extends Window {
+  translationMissing?: ApiLangPack;
+}
+
+declare const window: CustomWindow;
 
 interface LangFn {
   (key: string, value?: any, format?: 'i'): any;
@@ -74,7 +81,30 @@ export const getTranslation: LangFn = (key: string, value?: any, format?: 'i') =
     return key;
   }
 
-  const langString = (langPack?.[key]) || (fallbackLangPack?.[key]);
+  let customLangString: ApiLangString | undefined;
+  if (window.localStorage.getItem('custom-language') === 'zh-CN') {
+    const chinese = langPackChinesePlus?.[key];
+    if (chinese) {
+      customLangString = chinese;
+    } else {
+      const langString = (langPack?.[key]) || (fallbackLangPack?.[key]) || { key, value: undefined };
+      const msg = `[🇨🇳] 没有 【${key}】 对应的中文翻译`;
+      // eslint-disable-next-line no-null/no-null
+      const defaultMsg = `[💡] 其对应的翻译包是 ${JSON.stringify(langString, null, 2)}`;
+      const helper = '[🧲] 可在此通过 `window.translationMissing` 命令导出所有缺失的翻译';
+      const help = '[🙌] 请联系 @mashiro233 反馈，或者加入我们的翻译项目: https://crwd.in/telegram-tt';
+      // eslint-disable-next-line no-console
+      console.warn(`${msg}\n${defaultMsg}\n${helper}\n${help}`);
+      if (!window.translationMissing) {
+        window.translationMissing = {};
+      }
+      if (!window.translationMissing.hasOwnProperty(key)) {
+        window.translationMissing[key] = langString;
+      }
+    }
+  }
+
+  const langString = customLangString || (langPack?.[key]) || (fallbackLangPack?.[key]);
   if (!langString) {
     if (!fallbackLangPack) {
       void importFallbackLangPack();

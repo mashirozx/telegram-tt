@@ -312,7 +312,7 @@ const LeftMainHeader: FC<OwnProps & StateProps> = ({
             icon="bug"
             href={FEEDBACK_URL}
           >
-            Report Bug
+            {lang('Custom.ReportBug') === 'Custom.ReportBug' ? 'Report Bug' : lang('Custom.ReportBug')}
           </MenuItem>
           {IS_BETA && (
             <>
@@ -359,7 +359,7 @@ const LeftMainHeader: FC<OwnProps & StateProps> = ({
               icon="install"
               onClick={getPromptInstall()}
             >
-              Install App
+              {lang('Custom.InstallApp') === 'Custom.InstallApp' ? 'Install App' : lang('Custom.InstallApp')}
               <span className="menu-item-badge">{lang('New')}</span>
             </MenuItem>
           )}
