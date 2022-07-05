@@ -524,6 +524,30 @@ const langPackChinesePlus: ApiLangPack = {
     key: 'Chat.Service.Group.UpdatedPinnedMessage1',
     value: '%1$@ 置顶了 "%2$@"',
   },
+  'Weekday.Monday': {
+    key: 'Weekday.Monday',
+    value: '星期一',
+  },
+  'Channel.Persmission.Denied.SendMessages.DefaultRestrictedText': {
+    key: 'Channel.Persmission.Denied.SendMessages.DefaultRestrictedText',
+    value: '这个群组禁止了发送消息。',
+  },
+  lng_report_spam_and_leave: {
+    key: 'lng_report_spam_and_leave',
+    value: '举报并离开',
+  },
+  BlockUserTitle: {
+    key: 'BlockUserTitle',
+    value: '屏蔽 %1$s',
+  },
+  'Chat.Confirm.ReportSpam.Channel': {
+    key: 'Chat.Confirm.ReportSpam.Channel',
+    value: '举报并离开频道?',
+  },
+  Block: {
+    key: 'Block',
+    value: '屏蔽',
+  },
 };
 
 export default langPackChinesePlus;
