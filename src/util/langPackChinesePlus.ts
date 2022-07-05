@@ -382,6 +382,80 @@ const langPackChinesePlus: ApiLangPack = {
     key: 'WhoCanCallMe',
     value: '谁能给我打电话?',
   },
+  All: {
+    key: 'All',
+    value: '全部',
+  },
+  Unread: {
+    key: 'Unread',
+    value: '未读',
+  },
+  'ChatList.Filter.AddToFolder': {
+    key: 'ChatList.Filter.AddToFolder',
+    value: '添加到文件夹...',
+  },
+  VoipGroupPersonalAccount: {
+    key: 'VoipGroupPersonalAccount',
+    value: '个人账号',
+  },
+  lng_context_copy_text: {
+    key: 'lng_context_copy_text',
+    value: '复制文本',
+  },
+  lng_context_copy_message_link: {
+    key: 'lng_context_copy_message_link',
+    value: '复制消息链接',
+  },
+  lng_context_report_msg: {
+    key: 'lng_context_report_msg',
+    value: '举报',
+  },
+  'Conversation.ContextMenuNoViews': {
+    key: 'Conversation.ContextMenuNoViews',
+    value: '还没有人查看过',
+  },
+  lng_delete_for_everyone_hint: {
+    key: 'lng_delete_for_everyone_hint',
+    oneValue: '将从所有人的消息记录中删除这条消息。',
+    otherValue: '将从所有人的消息记录中删除这些消息。',
+  },
+  lng_report_message_title: {
+    key: 'lng_report_message_title',
+    value: '举报消息',
+  },
+  PinMessageAlert: {
+    key: 'PinMessageAlert',
+    value: '是否将这条消息在群聊中置顶？',
+  },
+  'Conversation.PinMessageAlert.PinAndNotifyMembers': {
+    key: 'Conversation.PinMessageAlert.PinAndNotifyMembers',
+    value: '置顶并通知所有成员',
+  },
+  'Chat.ContextReactionCount': {
+    key: 'Chat.ContextReactionCount',
+    oneValue: '1 个回应',
+    otherValue: '%@ 个回应',
+  },
+  'Chat.ForwardActionHeader': {
+    key: 'Chat.ForwardActionHeader',
+    value: '转发消息',
+  },
+  lng_context_copy_selected_items: {
+    key: 'lng_context_copy_selected_items',
+    value: '复制文字',
+  },
+  AddContact: {
+    key: 'AddContact',
+    value: '添加到联系人',
+  },
+  Call: {
+    key: 'Call',
+    value: '呼叫',
+  },
+  VideoCall: {
+    key: 'VideoCall',
+    value: '视频呼叫',
+  },
 };
 
 export default langPackChinesePlus;

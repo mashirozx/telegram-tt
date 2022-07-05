@@ -87,7 +87,7 @@ export const getTranslation: LangFn = (key: string, value?: any, format?: 'i') =
     if (chinese) {
       customLangString = chinese;
     } else {
-      const langString = (langPack?.[key]) || (fallbackLangPack?.[key]) || { key, value: undefined };
+      const langString = (langPack?.[key]) || (fallbackLangPack?.[key]) || { key, value: 'undefined' };
       const msg = `[🇨🇳] 没有 【${key}】 对应的中文翻译`;
       // eslint-disable-next-line no-null/no-null
       const defaultMsg = `[💡] 其对应的翻译包是 ${JSON.stringify(langString, null, 2)}`;
