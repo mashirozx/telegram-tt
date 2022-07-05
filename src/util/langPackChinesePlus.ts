@@ -516,6 +516,14 @@ const langPackChinesePlus: ApiLangPack = {
     key: 'Custom.RegisterNotice',
     value: '特别注意：如果是新注册的账号，登录后请搜索 @spambot 并按提示操作完成验证后再开始发言，否则用大陆手机号 (+86) 新注册的账号可能会被当作垃圾骚扰账号而封禁。详情见链接：',
   },
+  'Message.PinnedGenericMessage': {
+    key: 'Message.PinnedGenericMessage',
+    value: '%@ 置顶了一条消息',
+  },
+  'Chat.Service.Group.UpdatedPinnedMessage1': {
+    key: 'Chat.Service.Group.UpdatedPinnedMessage1',
+    value: '%1$@ 置顶了 "%2$@"',
+  },
 };
 
 export default langPackChinesePlus;
