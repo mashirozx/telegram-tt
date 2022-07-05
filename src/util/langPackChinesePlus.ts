@@ -456,6 +456,30 @@ const langPackChinesePlus: ApiLangPack = {
     key: 'VideoCall',
     value: '视频呼叫',
   },
+  'Notification.Joined': {
+    key: 'Notification.Joined',
+    value: '%@ 加入了 Telegram',
+  },
+  'Notification.CreatedChannel': {
+    key: 'Notification.CreatedChannel',
+    value: '频道已创建',
+  },
+  WaitingForNetwork: {
+    key: 'WaitingForNetwork',
+    value: '等待忘网络连接...',
+  },
+  'Conversation.ReportMessages': {
+    key: 'Conversation.ReportMessages',
+    value: '举报消息',
+  },
+  'Notification.Invited': {
+    key: 'Notification.Invited',
+    value: '%@ 邀请了 %@',
+  },
+  ClearRecentEmoji: {
+    key: 'ClearRecentEmoji',
+    value: '清除当前的 emoji?',
+  },
 };
 
 export default langPackChinesePlus;
