@@ -92,7 +92,7 @@ export const getTranslation: LangFn = (key: string, value?: any, format?: 'i') =
       // eslint-disable-next-line no-null/no-null
       const defaultMsg = `[💡] 其对应的翻译包是 ${JSON.stringify(langString, null, 2)}`;
       const helper = '[🧲] 可在此通过 `window.translationMissing` 命令导出所有缺失的翻译';
-      const help = '[🙌] 请联系 @mashiro233 反馈，或者加入我们的翻译项目: https://crwd.in/telegram-tt';
+      const help = '[🙌] 请打开首页左侧的菜单，点击翻译反馈，并将剪贴板上的内容发送给 @mashiro233 以提交缺失的翻译信息';
       // eslint-disable-next-line no-console
       console.warn(`${msg}\n${defaultMsg}\n${helper}\n${help}`);
       if (!window.translationMissing) {

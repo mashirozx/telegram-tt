@@ -480,6 +480,42 @@ const langPackChinesePlus: ApiLangPack = {
     key: 'ClearRecentEmoji',
     value: '清除当前的 emoji?',
   },
+  'Custom.ReportTranslation': {
+    key: 'Custom.ReportTranslation',
+    value: '报告翻译问题',
+  },
+  'This phone number is banned.': {
+    key: 'This phone number is banned.',
+    value: '这个电话号码被禁止使用了。',
+  },
+  Code: {
+    key: 'Code',
+    value: '验证码',
+  },
+  HiddenName: {
+    key: 'HiddenName',
+    value: '已删除的账号',
+  },
+  SetReminder: {
+    key: 'SetReminder',
+    value: '设置一个提醒',
+  },
+  'Save edited message': {
+    key: 'Save edited message',
+    value: '保存已编辑的消息',
+  },
+  OK: {
+    key: 'OK',
+    value: '好',
+  },
+  'Custom.WaitQRLogin': {
+    key: 'Custom.WaitQRLogin',
+    value: '请稍等，加载完毕后可切换至用手机号登录',
+  },
+  'Custom.RegisterNotice': {
+    key: 'Custom.RegisterNotice',
+    value: '特别注意：如果是新注册的账号，登录后请搜索 @spambot 并按提示操作完成验证后再开始发言，否则用大陆手机号 (+86) 新注册的账号可能会被当作垃圾骚扰账号而封禁。详情见链接：',
+  },
 };
 
 export default langPackChinesePlus;

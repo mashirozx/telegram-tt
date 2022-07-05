@@ -205,6 +205,8 @@ const AuthPhoneNumber: FC<StateProps> = ({
 
   const isAuthReady = authState === 'authorizationStateWaitPhoneNumber';
 
+  // @ts-ignore
+  // @ts-ignore
   return (
     <div id="auth-phone-number-form" className="custom-scroll">
       <div className="auth-form">
@@ -228,6 +230,12 @@ const AuthPhoneNumber: FC<StateProps> = ({
             onChange={handlePhoneNumberChange}
             onPaste={IS_SAFARI ? handlePaste : undefined}
           />
+          <p className="note">
+            {/* eslint-disable-next-line max-len */}
+            {lang('Custom.RegisterNotice') === 'Custom.RegisterNotice' ? 'Important: If you are going to register with a phone number from mainland China (+86), look this guide first, or your account may be banned:' : lang('Custom.RegisterNotice')}
+            {/* eslint-disable-next-line max-len */}
+            <a href="https://apple-node-07e.notion.site/Telegram-8e47942dc22d4a50a33f1298f3c30cdd" target="_blank" rel="noreferrer">Guide</a>
+          </p>
           <Checkbox
             id="sign-in-keep-session"
             label="Keep me signed in"

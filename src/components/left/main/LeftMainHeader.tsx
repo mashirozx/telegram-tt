@@ -30,6 +30,7 @@ import useLang from '../../../hooks/useLang';
 import useConnectionStatus from '../../../hooks/useConnectionStatus';
 import { useHotkeys } from '../../../hooks/useHotkeys';
 import { getPromptInstall } from '../../../util/installPrompt';
+import useMissingTranslationDetector from '../../../hooks/useMissingTranslationDetector';
 
 import DropdownMenu from '../../ui/DropdownMenu';
 import MenuItem from '../../ui/MenuItem';
@@ -41,6 +42,7 @@ import ShowTransition from '../../ui/ShowTransition';
 import ConnectionStatusOverlay from '../ConnectionStatusOverlay';
 
 import './LeftMainHeader.scss';
+import useCustomLangObserver from "../../../hooks/useCustomLangObserver";
 
 type OwnProps = {
   content: LeftColumnContent;
@@ -109,6 +111,9 @@ const LeftMainHeader: FC<OwnProps & StateProps> = ({
     requestNextSettingsScreen,
     skipLockOnUnload,
   } = getActions();
+
+  const { missingTranslations, copyTranslations } = useMissingTranslationDetector();
+  const customLang = useCustomLangObserver();
 
   const lang = useLang();
   const hasMenu = content === LeftColumnContent.ChatList;
@@ -353,6 +358,16 @@ const LeftMainHeader: FC<OwnProps & StateProps> = ({
                 Switch to Old Version
               </MenuItem>
             </>
+          )}
+          {missingTranslations && customLang !== 'official' && (
+            <MenuItem
+              icon="language"
+              onClick={copyTranslations}
+            >
+              {/* eslint-disable-next-line max-len */}
+              {lang('Custom.ReportTranslation') === 'Custom.ReportTranslation' ? 'Report Translation' : lang('Custom.ReportTranslation')}
+              <span className="menu-item-badge">{lang('New')}</span>
+            </MenuItem>
           )}
           {canInstall && (
             <MenuItem
