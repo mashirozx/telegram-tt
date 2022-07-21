@@ -548,6 +548,44 @@ const langPackChinesePlus: ApiLangPack = {
     key: 'Block',
     value: '屏蔽',
   },
+  ViaBot: {
+    key: 'ViaBot',
+    // via
+    value: '通过',
+  },
+  'Too many attempts. Try again in 22 hours': {
+    key: 'Too many attempts. Try again in 22 hours',
+    value: '尝试次数过多，请 22 小时后再试',
+  },
+  'Migrated from %target_chat%': {
+    key: 'Migrated from %target_chat%',
+    value: '迁移自 %@',
+  },
+  'Chat.EmptyChat': {
+    key: 'Chat.EmptyChat',
+    value: '这里还没有消息',
+  },
+  lng_new_contact_add: {
+    key: 'lng_new_contact_add',
+    value: '添加联系人',
+  },
+  lng_new_contact_block: {
+    key: 'lng_new_contact_block',
+    value: '屏蔽用户',
+  },
+  'UserInfo.BlockConfirmationTitle': {
+    key: 'UserInfo.BlockConfirmationTitle',
+    value: '你确定在 Telegram 上屏蔽来自 %@ 的消息和来电?',
+  },
+  DeleteThisChat: {
+    key: 'DeleteThisChat',
+    value: '删除此聊天',
+  },
+  ReportChat: {
+    key: 'ReportChat',
+    value: '报告',
+  },
+
 };
 
 export default langPackChinesePlus;
